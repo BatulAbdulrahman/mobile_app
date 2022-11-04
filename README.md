@@ -1,4 +1,4 @@
-# mobile_app
+# Dhasboard
 
 Based on my experience of building production ready app, this is my starter flutter project application using the clean architecture.
 
