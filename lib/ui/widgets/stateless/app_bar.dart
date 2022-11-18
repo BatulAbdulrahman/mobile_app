@@ -5,13 +5,10 @@ import 'app_logo.dart';
 
 // ignore: must_be_immutable
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
-
-
   MyAppBar();
 
   @override
   Widget build(BuildContext context) {
-
     return AppBar(
       title: Container(
         height: 50.0,
@@ -23,7 +20,6 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       centerTitle: false,
-
     );
   }
 

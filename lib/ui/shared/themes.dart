@@ -9,13 +9,13 @@ final primaryMaterialTheme = ThemeData(
   primaryColor: HexColor.fromHex(Constants.app_color_primary),
   accentColor: HexColor.fromHex(Constants.app_color_secondary),
   primaryColorDark: HexColor.fromHex(Constants.app_color_primary_variant),
-  scaffoldBackgroundColor: const Color(0xFFEFEFEF),
+  scaffoldBackgroundColor: const Color(0xFFcfdfda),
   backgroundColor: Colors.white,
   iconTheme: IconThemeData(color: Colors.grey),
   colorScheme: ColorScheme.light(
       primary: HexColor.fromHex(Constants.app_color_primary),
       secondary: HexColor.fromHex(Constants.app_color_secondary),
       onPrimary: HexColor.fromHex(Constants.app_color_on_primary),
-      background: Colors.white,
+      background: const Color(0xFFcfdfda),
       onSecondary: HexColor.fromHex(Constants.app_color_on_secondary)),
 ).copyWith();

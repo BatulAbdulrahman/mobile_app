@@ -27,6 +27,9 @@ dependencies:
   path_provider: ^2.0.1
   built_value: ^8.0.6
   infinite_scroll_pagination: ^3.0.1
+  google_fonts: ^3.0.1
+  fl_chart: ^0.35.0
+  provider: ^5.0.0
 
 dev_dependencies:
   analyzer: ^3.3.1
