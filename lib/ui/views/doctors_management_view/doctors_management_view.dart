@@ -9,22 +9,22 @@ import '../../../core/constant/app_colors.dart';
 import '../../../core/constant/constants.dart';
 import '../../widgets/stateless/analytic_cards/analytic_cards.dart';
 import '../../widgets/stateless/title_view/title_view.dart';
-import 'home_view_model.dart';
+import 'doctors_management_view_model.dart';
 
-class CustomerHomeView extends StatelessWidget {
-  const CustomerHomeView({Key? key}) : super(key: key);
+class CustomerDoctorsManagementView extends StatelessWidget {
+  const CustomerDoctorsManagementView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<CustomerHomeViewModel>.nonReactive(
-        viewModelBuilder: () => CustomerHomeViewModel(),
+    return ViewModelBuilder<CustomerDoctorsManagementViewModel>.nonReactive(
+        viewModelBuilder: () => CustomerDoctorsManagementViewModel(),
         onModelReady: (model) => model.init(),
-        builder: (context, model, child) => homeView());
+        builder: (context, model, child) => doctorsManagementView());
   }
 }
 
-class homeView extends StatelessWidget {
-  const homeView({
+class doctorsManagementView extends StatelessWidget {
+  const doctorsManagementView({
     Key? key,
   }) : super(key: key);
 
@@ -39,10 +39,10 @@ class homeView extends StatelessWidget {
             children: [
               Container(
                   child: TitleView(
-                title: "الرئيسية",
+                title: "إدارةالأطباء",
               )),
               Expanded(
-                child: AnalyticCards(),
+                child: Container(),
               )
             ],
           ),

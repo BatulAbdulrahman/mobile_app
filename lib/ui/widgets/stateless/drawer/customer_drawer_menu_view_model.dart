@@ -10,7 +10,6 @@ import '../../../router.gr.dart';
 
 class CustomerDrawerMenuViewModel extends BaseViewModel {
   final KeyStorageService? keyStorageService = locator<KeyStorageService>();
-  final NavigationService? _navigationService = locator<NavigationService>();
 
   Future<void> init() async {
     notifyListeners();
@@ -20,6 +19,5 @@ class CustomerDrawerMenuViewModel extends BaseViewModel {
 
   void showCustomerMain(BuildContext context) {
     Navigator.of(context).pop();
-
   }
 }

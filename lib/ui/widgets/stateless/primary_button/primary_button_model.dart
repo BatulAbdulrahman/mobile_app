@@ -8,12 +8,14 @@ import '/core/services/navigation/navigation_service.dart';
 import '/locator.dart';
 import '../../../router.gr.dart';
 
-class TitleViewModel extends BaseViewModel {
+class PrimaryButtonModel extends BaseViewModel {
   final KeyStorageService? keyStorageService = locator<KeyStorageService>();
 
   Future<void> init() async {
     notifyListeners();
   }
+
+  void moveToLogin(BuildContext context) {}
 
   void showCustomerMain(BuildContext context) {
     Navigator.of(context).pop();

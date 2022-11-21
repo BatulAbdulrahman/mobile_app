@@ -1,4 +1,4 @@
-import 'dart:async';
+// import 'dart:async';
 
 import 'package:flutter/material.dart';
 
@@ -7,7 +7,6 @@ import 'locator.dart';
 import 'logger.dart';
 
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
 
   await setupLocator();

@@ -8,7 +8,7 @@ List analyticData = [
   AnalyticInfo(
     title: "عدد الأطباء",
     count: 2000,
-    icone: Icon(
+    icon: Icon(
       Icons.business_outlined,
       color: HexColor.fromHex(Constants.app_color_secondary),
     ),
@@ -17,7 +17,7 @@ List analyticData = [
   AnalyticInfo(
     title: "عدد المصحات",
     count: 100,
-    icone: Icon(
+    icon: Icon(
       Icons.list_alt_outlined,
       color: HexColor.fromHex(Constants.app_color_secondary),
     ),
@@ -26,7 +26,7 @@ List analyticData = [
   AnalyticInfo(
     title: "عدد التقييمات",
     count: 128015,
-    icone: Icon(
+    icon: Icon(
       Icons.rate_review_outlined,
       color: HexColor.fromHex(Constants.app_color_secondary),
     ),
@@ -35,7 +35,7 @@ List analyticData = [
   AnalyticInfo(
     title: "عدد التخصصات",
     count: 40,
-    icone: Icon(
+    icon: Icon(
       Icons.business_outlined,
       color: HexColor.fromHex(Constants.app_color_secondary),
     ),

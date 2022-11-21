@@ -89,7 +89,7 @@ class AnalyticInfoCard extends StatelessWidget {
             width: 40,
             decoration: BoxDecoration(
                 color: info.color!.withOpacity(0.1), shape: BoxShape.circle),
-            child: info.icone!,
+            child: info.icon!,
           ),
           Text(
             info.title!,

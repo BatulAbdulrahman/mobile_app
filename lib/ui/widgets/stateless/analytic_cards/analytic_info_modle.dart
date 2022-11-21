@@ -4,12 +4,12 @@ class AnalyticInfo {
   final String? title;
   final int? count;
   final Color? color;
-  final Icon? icone;
+  final Icon? icon;
 
   AnalyticInfo({
     this.title,
     this.count,
     this.color,
-    this.icone,
+    this.icon,
   });
 }
