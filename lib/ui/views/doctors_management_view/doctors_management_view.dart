@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
-
-import '../../../core/constant/app_colors.dart';
-import '../../../core/constant/constants.dart';
-import '../../widgets/stateless/analytic_cards/analytic_cards.dart';
-import '../../widgets/stateless/title_view/title_view.dart';
+import '../add_doctor/add_doctor.dart';
+import '../../widgets/stateless/doctors_data_table/doctors_data_table.dart';
+import '../../widgets/stateless/header/header.dart';
 import 'doctors_management_view_model.dart';
 
 class CustomerDoctorsManagementView extends StatelessWidget {
@@ -37,13 +31,16 @@ class doctorsManagementView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Container(
-                  child: TitleView(
-                title: "إدارةالأطباء",
-              )),
-              Expanded(
-                child: Container(),
-              )
+              Header(
+                  title: 'إدارة الأطباء',
+                  buttonText: 'إضافة',
+                  buttonPress: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => CustomerAddDoctorView(),
+                    );
+                  }),
+              DoctorsDataTable(),
             ],
           ),
         ),

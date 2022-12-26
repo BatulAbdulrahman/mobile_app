@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app/ui/views/posts_list/paged_posts_list_view.dart';
 import 'package:mobile_app/ui/views/posts_list/posts_list_view_model.dart';
 import 'package:stacked/stacked.dart';
-import '/ui/widgets/stateless/app_bar.dart';
+// import '/ui/widgets/stateless/app_bar.dart';
 
 // ignore: must_be_immutable
 class PostsListView extends StatefulWidget {
@@ -38,7 +38,7 @@ class _PostsListViewState extends State<PostsListView>
       },
       builder: (context, model, child) => Scaffold(
           // drawer: Drawer(child: CustomerDrawerMenu()),
-          appBar: MyAppBar(),
+          // appBar: MyAppBar(),
           body:
               PagedPostsListView({}, onPostsClicked: (professional) async {})),
     );

@@ -5,7 +5,7 @@ import 'package:mobile_app/ui/shared/ui_helper.dart';
 import '../../../core/models/post/post.dart';
 import '../../widgets/stateless/indicators/loading_circular_progress_indicator.dart';
 import '/ui/shared/ui_helper.dart';
-import '/ui/widgets/stateless/app_bar.dart';
+// import '/ui/widgets/stateless/app_bar.dart';
 import 'posts_view_model.dart';
 
 // ignore: must_be_immutable
@@ -56,11 +56,11 @@ class _PostsViewState extends State<PostsView>
       builder: (context, model, child) => model.isBusy
           ? Scaffold(
               //  drawer: Drawer(child: CustomerDrawerMenu()),
-              appBar: MyAppBar(),
+              // appBar: MyAppBar(),
               body: LoadingCircularProgressIndicator())
           : Scaffold(
               // drawer: Drawer(child: CustomerDrawerMenu()),
-              appBar: MyAppBar(),
+              // appBar: MyAppBar(),
               body: model.isBusy
                   ? LoadingCircularProgressIndicator()
                   : Padding(

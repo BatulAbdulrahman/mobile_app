@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:mobile_app/ui/views/add_specialtie/add_specialtie.dart';
 import 'package:stacked/stacked.dart';
-
-import '../../../core/constant/app_colors.dart';
-import '../../../core/constant/constants.dart';
-import '../../widgets/stateless/analytic_cards/analytic_cards.dart';
-import '../../widgets/stateless/title_view/title_view.dart';
+import '../../widgets/stateless/header/header.dart';
+import '../../widgets/stateless/specialty_data_table/specialty_data_table.dart';
 import 'specialties_management_view_model.dart';
 
 class CustomerSpecialtiesManagementView extends StatelessWidget {
@@ -37,13 +31,17 @@ class specialtiesManagementView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Container(
-                  child: TitleView(
-                title: "إدارةالتخصصات",
-              )),
-              Expanded(
-                child: Container(),
-              )
+              Header(
+                title: 'إدارةالتخصصات',
+                buttonText: 'إضافة',
+                buttonPress: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => CustomerAddSpecialtieView(),
+                  );
+                },
+              ),
+              SpecialtyDataTable(),
             ],
           ),
         ),

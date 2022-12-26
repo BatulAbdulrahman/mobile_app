@@ -7,7 +7,7 @@ import '/core/services/key_storage/key_storage_service.dart';
 import '/core/services/navigation/navigation_service.dart';
 import '/locator.dart';
 
-class CustomerAccountManagementViewModel extends BaseViewModel {
+class CustomerDoctorAccountManagementViewModel extends BaseViewModel {
   Future<void> init() async {
     notifyListeners();
   }

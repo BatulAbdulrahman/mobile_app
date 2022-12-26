@@ -14,8 +14,7 @@ import '../clinics_management_view/clinics_management_view.dart';
 import '../doctors_management_view/doctors_management_view.dart';
 import '../home_view/home_view.dart';
 import '../login_view/login_screen.dart';
-import '../posts_list/posts_list_view.dart';
-import '../account_management_view/account_management_view.dart';
+import '../account_management_view/doctor_account_management_view.dart';
 import '../specialties_management_view/specialties_management_view.dart';
 import '/ui/widgets/animation/fade_in.dart';
 import '../settings/settings_view.dart';
@@ -31,7 +30,7 @@ class CustomerMainView extends StatefulWidget {
 class _CustomerMainViewState extends State<CustomerMainView> {
   final _views = [
     FadeIn(child: CustomerHomeView()),
-    FadeIn(child: CustomerAccountManagementView()),
+    FadeIn(child: CustomerDoctorAccountManagementView()),
     FadeIn(child: CustomerDoctorsManagementView()),
     FadeIn(child: CustomerClinicsManagementView()),
     FadeIn(child: CustomerSpecialtiesManagementView()),
@@ -54,7 +53,16 @@ class _CustomerMainViewState extends State<CustomerMainView> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-      ;
+      // if (_scaffoldKey.currentState.isDrawerOpen)
+      //   _scaffoldKey.currentState.openEndDrawer();
+      // else {
+      //   _scaffoldKey.currentState.openDrawer();
+      // }
+      // context
+      //     .read<DrawerMenuControler>()
+      //     .ScaffoldKey
+      //     .currentState!
+      //     .closeDrawer();
     });
   }
 
@@ -69,7 +77,7 @@ class _CustomerMainViewState extends State<CustomerMainView> {
         length: _views.length,
         child: Scaffold(
             key: context.read<DrawerMenuControler>().ScaffoldKey,
-            drawer: CustomerDrawerMenu(context),
+            endDrawer: CustomerDrawerMenu(context),
             body: SafeArea(
               child: Row(textDirection: TextDirection.rtl, children: [
                 if (Responsive.isDesktop(context))
@@ -111,7 +119,7 @@ class _CustomerMainViewState extends State<CustomerMainView> {
               ),
               DrawerHeader(
                 child: CircleAvatar(
-                  radius: 53,
+                  radius: 52,
                   backgroundColor:
                       HexColor.fromHex(Constants.app_color_secondary),
                   child: CircleAvatar(

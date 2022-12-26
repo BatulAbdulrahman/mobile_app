@@ -30,6 +30,13 @@ dependencies:
   google_fonts: ^3.0.1
   fl_chart: ^0.35.0
   provider: ^5.0.0
+  data_table_2: ^2.3.8
+  image_picker: ^0.8.6
+  html: ^0.15.1
+  custom_radio_grouped_button: ^2.1.2+2
+  dropdown_plus: ^0.0.9
+  custom_check_box: ^0.0.4
+  multiselect_formfield: ^0.1.7
 
 dev_dependencies:
   analyzer: ^3.3.1

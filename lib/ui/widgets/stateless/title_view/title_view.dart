@@ -22,25 +22,38 @@ class TitleView extends StatelessWidget {
       viewModelBuilder: () => TitleViewModel(),
       onModelReady: (model) => model.init(),
       builder: (context, model, child) => Container(
-        margin: EdgeInsets.only(
-          top: 16.0 * 3,
-          bottom: 16.0 * 3,
-        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Text(
-              title,
-              textDirection: TextDirection.rtl,
-              style: GoogleFonts.cairo(
-                  fontStyle: FontStyle.normal,
-                  fontSize: 25,
-                  color: HexColor.fromHex(Constants.app_color_on_secondary),
-                  fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              width: 16.0 * 1,
-            ),
+            if (MediaQuery.of(context).size.width < 360)
+              Text(
+                title,
+                textDirection: TextDirection.rtl,
+                style: GoogleFonts.cairo(
+                    fontStyle: FontStyle.normal,
+                    fontSize: 20,
+                    color: HexColor.fromHex(Constants.app_color_on_secondary),
+                    fontWeight: FontWeight.bold),
+              ),
+            if (!(MediaQuery.of(context).size.width < 360))
+              Text(
+                title,
+                textDirection: TextDirection.rtl,
+                style: GoogleFonts.cairo(
+                    fontStyle: FontStyle.normal,
+                    fontSize: 25,
+                    color: HexColor.fromHex(Constants.app_color_on_secondary),
+                    fontWeight: FontWeight.bold),
+              ),
+            if (!(MediaQuery.of(context).size.width < 360))
+              SizedBox(
+                width: 16.0,
+              ),
+            if ((MediaQuery.of(context).size.width < 360) &&
+                (MediaQuery.of(context).size.width > 310))
+              SizedBox(
+                width: 16.0 / 2,
+              ),
             if (!Responsive.isDesktop(context))
               IconButton(
                   onPressed: context.read<DrawerMenuControler>().menuControl,

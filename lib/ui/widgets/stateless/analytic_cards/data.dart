@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
 
-import 'analytic_info_modle.dart';
 import '../../../../core/constant/app_colors.dart';
 import '../../../../core/constant/constants.dart';
 
+class AnalyticInfo {
+  final String? title;
+  final int? count;
+  final Color? color;
+  final Icon? icon;
+
+  AnalyticInfo({
+    this.title,
+    this.count,
+    this.color,
+    this.icon,
+  });
+}
+
 List analyticData = [
   AnalyticInfo(
-    title: "عدد الأطباء",
+    title: 'عدد الأطباء',
     count: 2000,
     icon: Icon(
       Icons.business_outlined,
@@ -15,7 +28,7 @@ List analyticData = [
     color: HexColor.fromHex(Constants.app_color_on_secondary),
   ),
   AnalyticInfo(
-    title: "عدد المصحات",
+    title: 'عدد المصحات',
     count: 100,
     icon: Icon(
       Icons.list_alt_outlined,
@@ -24,7 +37,7 @@ List analyticData = [
     color: HexColor.fromHex(Constants.app_color_on_secondary),
   ),
   AnalyticInfo(
-    title: "عدد التقييمات",
+    title: 'عدد التقييمات',
     count: 128015,
     icon: Icon(
       Icons.rate_review_outlined,
@@ -33,7 +46,7 @@ List analyticData = [
     color: HexColor.fromHex(Constants.app_color_on_secondary),
   ),
   AnalyticInfo(
-    title: "عدد التخصصات",
+    title: 'عدد التخصصات',
     count: 40,
     icon: Icon(
       Icons.business_outlined,

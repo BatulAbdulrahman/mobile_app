@@ -49,6 +49,7 @@ class MyApp extends StatelessWidget {
           Locale('ar', ''), // Arabic, no country code
         ],
         localeResolutionCallback: (deviceLocale, supportedLocales) {
+          return null;
           //myLocale = deviceLocale ; // here you make your app language similar to device language , but you should check whether the localization is supported by your app
         },
         onGenerateTitle: (context) => '',

@@ -5,7 +5,7 @@ import 'package:stacked/stacked.dart';
 import '../../../core/constant/app_colors.dart';
 import '../../../core/constant/constants.dart';
 import '../../shared/responsive.dart';
-import '../../widgets/stateless/primary_button/primary_button.dart';
+import '../../shared/signin_button.dart';
 import 'login_screen_model.dart';
 
 class CustomerLoginView extends StatefulWidget {
@@ -241,7 +241,7 @@ class _CustomerLoginViewState extends State<CustomerLoginView> {
                           ),
                         ),
                         SizedBox(height: height * 0.05),
-                        PrimaryButton(
+                        SigninButton(
                           press: () {},
                           title: 'تسجيل الدخول',
                         )

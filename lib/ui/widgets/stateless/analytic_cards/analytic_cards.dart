@@ -5,7 +5,6 @@ import '../../../../core/constant/app_colors.dart';
 import '../../../../core/constant/constants.dart';
 import '../../../shared/responsive.dart';
 import 'analytic_cards_model.dart';
-import 'analytic_info_modle.dart';
 import 'data.dart';
 
 class AnalyticCards extends StatelessWidget {
@@ -13,7 +12,7 @@ class AnalyticCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    var size = MediaQuery.of(context).size;
 
     return ViewModelBuilder<AnalyticCardsModel>.nonReactive(
         viewModelBuilder: () => AnalyticCardsModel(),
@@ -22,11 +21,11 @@ class AnalyticCards extends StatelessWidget {
               child: Responsive(
                 mobile: AnalyticInfoCardGridView(
                   crossAxisCount: size.width < 675 ? 2 : 4,
-                  childAspectRatio: size.width < 675 ? 1.3 : 1,
+                  childAspectRatio: size.width < 675 ? 0.95 : 1,
                 ),
                 tablet: AnalyticInfoCardGridView(),
                 desktop: AnalyticInfoCardGridView(
-                  childAspectRatio: size.width < 1400 ? 1.1 : 1.4,
+                  childAspectRatio: size.width < 1400 ? 1 : 1.4,
                 ),
               ),
             ));
@@ -102,7 +101,7 @@ class AnalyticInfoCard extends StatelessWidget {
                 fontWeight: FontWeight.bold),
           ),
           Text(
-            "${info.count}",
+            '${info.count}',
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: GoogleFonts.cairo(
