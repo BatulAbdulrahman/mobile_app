@@ -11,8 +11,8 @@ import 'package:mobile_app/core/services/navigation/navigation_service_impl.dart
 import 'package:mobile_app/core/utils/file_helper.dart';
 import 'package:get_it/get_it.dart';
 
-import 'core/data_sources/posts/post_remote_data_source.dart';
-import 'core/repositories/posts_repository/posts_repository.dart';
+import 'core/data_sources/doctors/doctors_remote_data_source.dart';
+import 'core/repositories/doctors_repository/doctors_repository.dart';
 
 GetIt locator = GetIt.instance;
 
@@ -36,12 +36,12 @@ Future<void> setupLocator() async {
 
   // Data sources
 
-  locator.registerLazySingleton<PostsRemoteDataSource>(
-    () => PostsRemoteDataSourceImpl(),
+  locator.registerLazySingleton<DoctorsRemoteDataSource>(
+    () => DoctorsRemoteDataSourceImpl(),
   );
 
-  locator.registerLazySingleton<PostsRepository>(() => PostsRepositoryImpl());
-
+  locator
+      .registerLazySingleton<DoctorsRepository>(() => DoctorsRepositoryImpl());
   await _setupSharedPreferences();
 
   // Utils
