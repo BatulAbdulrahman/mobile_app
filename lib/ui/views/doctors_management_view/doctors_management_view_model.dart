@@ -16,21 +16,9 @@ class CustomerDoctorsManagementViewModel extends BaseViewModel {
   }*/
 
   Doctor? doctor;
-  List<Doctor> doctors_list = [];
 
-  String? q = '';
-  Doctor? selected_doctor;
   Future<void> init(Doctor doctor) async {
     this.doctor = doctor;
-
-    doctors_list = await locator<DoctorsRepository>()
-        .fetchDoctorsList({'paginate': '100'});
-
-    if (doctors_list.isNotEmpty) {
-      selected_doctor = doctors_list.first;
-    }
-    print(doctors_list);
-    setBusy(false);
   }
 
   void moveToLogin(BuildContext context) {}
