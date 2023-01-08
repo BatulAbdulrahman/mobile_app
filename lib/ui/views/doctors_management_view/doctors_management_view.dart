@@ -2,6 +2,7 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:mobile_app/logger.dart';
+import 'package:mobile_app/ui/views/doctors_management_view/paged_doctors_list_view.dart';
 import 'package:stacked/stacked.dart';
 import '../add_doctor/add_doctor.dart';
 import '../../widgets/stateless/doctors_data_table/doctors_data_table.dart';
@@ -20,7 +21,7 @@ class _CustomerDoctorsManagementViewState
   Widget build(BuildContext context) {
     return ViewModelBuilder<CustomerDoctorsManagementViewModel>.nonReactive(
         viewModelBuilder: () => CustomerDoctorsManagementViewModel(),
-        onModelReady: (model) => model.init(model.doctor!),
+        onModelReady: (model) => model.init(context),
         builder: (context, model, child) => Container(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -37,7 +38,10 @@ class _CustomerDoctorsManagementViewState
                               builder: (context) => CustomerAddDoctorView(),
                             );
                           }),
-                      DoctorsDataTable(),
+                      Expanded(
+                        child: PagedDoctorsListView({},
+                            onDoctorsClicked: (move) {}),
+                      ),
                     ],
                   ),
                 ),

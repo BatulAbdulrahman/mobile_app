@@ -21,25 +21,16 @@ abstract class Doctor implements Built<Doctor, DoctorBuilder> {
 
   String? get description;
 
-  String? get rating;
+  int? get rating;
 
   String? get role;
 
   String? get img;
 
-  String? get thumb;
+  //String? get thumb;
 
   bool? get is_disabled;
 
-  //BuiltList<Genre>? get genres;
-
-  //BuiltList<Movie>? get related_movies;
-
-  //BuiltList<Review>? get reviews;
-
-  // BuiltList<Actor>? get actor;
-
-  //Genre? get genre;
   DateTime? get created_at;
   DateTime? get updated_at;
   Doctor._();

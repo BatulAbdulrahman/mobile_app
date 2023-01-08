@@ -72,8 +72,7 @@ class _$DoctorSerializer implements StructuredSerializer<Doctor> {
     if (value != null) {
       result
         ..add('rating')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
     value = object.role;
     if (value != null) {
@@ -86,13 +85,6 @@ class _$DoctorSerializer implements StructuredSerializer<Doctor> {
     if (value != null) {
       result
         ..add('img')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    value = object.thumb;
-    if (value != null) {
-      result
-        ..add('thumb')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -161,7 +153,7 @@ class _$DoctorSerializer implements StructuredSerializer<Doctor> {
           break;
         case 'rating':
           result.rating = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'role':
           result.role = serializers.deserialize(value,
@@ -169,10 +161,6 @@ class _$DoctorSerializer implements StructuredSerializer<Doctor> {
           break;
         case 'img':
           result.img = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'thumb':
-          result.thumb = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'is_disabled':
@@ -210,13 +198,11 @@ class _$Doctor extends Doctor {
   @override
   final String? description;
   @override
-  final String? rating;
+  final int? rating;
   @override
   final String? role;
   @override
   final String? img;
-  @override
-  final String? thumb;
   @override
   final bool? is_disabled;
   @override
@@ -238,7 +224,6 @@ class _$Doctor extends Doctor {
       this.rating,
       this.role,
       this.img,
-      this.thumb,
       this.is_disabled,
       this.created_at,
       this.updated_at})
@@ -265,7 +250,6 @@ class _$Doctor extends Doctor {
         rating == other.rating &&
         role == other.role &&
         img == other.img &&
-        thumb == other.thumb &&
         is_disabled == other.is_disabled &&
         created_at == other.created_at &&
         updated_at == other.updated_at;
@@ -284,18 +268,16 @@ class _$Doctor extends Doctor {
                                     $jc(
                                         $jc(
                                             $jc(
-                                                $jc(
-                                                    $jc($jc(0, id.hashCode),
-                                                        name.hashCode),
-                                                    phone.hashCode),
-                                                email.hashCode),
-                                            password.hashCode),
-                                        sex.hashCode),
-                                    description.hashCode),
-                                rating.hashCode),
-                            role.hashCode),
-                        img.hashCode),
-                    thumb.hashCode),
+                                                $jc($jc(0, id.hashCode),
+                                                    name.hashCode),
+                                                phone.hashCode),
+                                            email.hashCode),
+                                        password.hashCode),
+                                    sex.hashCode),
+                                description.hashCode),
+                            rating.hashCode),
+                        role.hashCode),
+                    img.hashCode),
                 is_disabled.hashCode),
             created_at.hashCode),
         updated_at.hashCode));
@@ -314,7 +296,6 @@ class _$Doctor extends Doctor {
           ..add('rating', rating)
           ..add('role', role)
           ..add('img', img)
-          ..add('thumb', thumb)
           ..add('is_disabled', is_disabled)
           ..add('created_at', created_at)
           ..add('updated_at', updated_at))
@@ -353,9 +334,9 @@ class DoctorBuilder implements Builder<Doctor, DoctorBuilder> {
   String? get description => _$this._description;
   set description(String? description) => _$this._description = description;
 
-  String? _rating;
-  String? get rating => _$this._rating;
-  set rating(String? rating) => _$this._rating = rating;
+  int? _rating;
+  int? get rating => _$this._rating;
+  set rating(int? rating) => _$this._rating = rating;
 
   String? _role;
   String? get role => _$this._role;
@@ -364,10 +345,6 @@ class DoctorBuilder implements Builder<Doctor, DoctorBuilder> {
   String? _img;
   String? get img => _$this._img;
   set img(String? img) => _$this._img = img;
-
-  String? _thumb;
-  String? get thumb => _$this._thumb;
-  set thumb(String? thumb) => _$this._thumb = thumb;
 
   bool? _is_disabled;
   bool? get is_disabled => _$this._is_disabled;
@@ -396,7 +373,6 @@ class DoctorBuilder implements Builder<Doctor, DoctorBuilder> {
       _rating = $v.rating;
       _role = $v.role;
       _img = $v.img;
-      _thumb = $v.thumb;
       _is_disabled = $v.is_disabled;
       _created_at = $v.created_at;
       _updated_at = $v.updated_at;
@@ -432,7 +408,6 @@ class DoctorBuilder implements Builder<Doctor, DoctorBuilder> {
             rating: rating,
             role: role,
             img: img,
-            thumb: thumb,
             is_disabled: is_disabled,
             created_at: created_at,
             updated_at: updated_at);

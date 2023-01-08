@@ -8,27 +8,14 @@ import '/locator.dart';
 
 class DoctorsDataTableModel extends BaseViewModel {
   final KeyStorageService? keyStorageService = locator<KeyStorageService>();
-  Future<void> init() async {
+  /*Future<void> init() async {
     notifyListeners();
-  }
-  /*Doctor? doctor;
-  List<Doctor> doctors_list = [];
-
-  String? q = '';
-  Doctor? selected_doctor;
-  Future<void> init(Doctor doctor) async {
-    this.doctor = doctor;
-    setBusy(true);
-
-    doctors_list = await locator<DoctorsRepository>()
-        .fetchDoctorsList({'paginate': '100'});
-
-    if (doctors_list.isNotEmpty) {
-      selected_doctor = doctors_list.first;
-    }
-
-    setBusy(false);
   }*/
+  Doctor? doctor;
+
+  void init(Doctor doctor) {
+    this.doctor = doctor;
+  }
 
   /*Future<void> init() async {
     notifyListeners();

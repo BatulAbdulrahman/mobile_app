@@ -1,6 +1,7 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobile_app/core/models/doctor/doctor.dart';
 import 'package:mobile_app/ui/shared/delete_bottun.dart';
 import 'package:mobile_app/ui/shared/edit_bottun.dart';
 import 'package:mobile_app/ui/views/edit_doctor_data_view/edit_doctor_data_view.dart';
@@ -12,37 +13,23 @@ import 'data.dart';
 import 'doctors_data_table_model.dart';
 
 class DoctorsDataTable extends StatefulWidget {
-  const DoctorsDataTable({Key? key}) : super(key: key);
+  //const DoctorsDataTable({Key? key, required Doctor doctor}) : super(key: key);
+  final Doctor doctor;
+  final ValueChanged<Doctor> onChanged;
 
+  const DoctorsDataTable({required this.doctor, required this.onChanged});
   @override
   State<DoctorsDataTable> createState() => _DoctorsDataTableState();
 }
 
 class _DoctorsDataTableState extends State<DoctorsDataTable> {
   bool sort = true;
-  List<DoctorsData>? filterData;
-
-  onsortColum(int columnIndex, bool ascending) {
-    if (columnIndex == 0) {
-      if (ascending) {
-        filterData!.sort((a, b) => a.name!.compareTo(b.name!));
-      } else {
-        filterData!.sort((a, b) => b.name!.compareTo(a.name!));
-      }
-    }
-  }
-
-  @override
-  void initState() {
-    filterData = demoDoctorsData;
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DoctorsDataTableModel>.nonReactive(
       viewModelBuilder: () => DoctorsDataTableModel(),
-      onModelReady: (model) => model.init(),
+      onModelReady: (model) => model.init(model.doctor!),
       builder: (context, model, child) => Expanded(
         child: Directionality(
           textDirection: TextDirection.rtl,
@@ -79,35 +66,28 @@ class _DoctorsDataTableState extends State<DoctorsDataTable> {
                     color: HexColor.fromHex(Constants.app_color_on_secondary)
                         .withOpacity(0.5),
                   )),
-              onChanged: (value) {
-                setState(() {
-                  demoDoctorsData = filterData!
-                      .where((element) => element.name!.contains(value))
-                      .toList();
-                });
-              },
             ),
             rowsPerPage: 7,
             columnSpacing: 16.0 / 2,
             minWidth: 325,
             columns: [
               DataColumn(
-                  label: Text(
-                    'الاسم',
-                    style: GoogleFonts.cairo(
-                        fontStyle: FontStyle.normal,
-                        fontSize: 15,
-                        color:
-                            HexColor.fromHex(Constants.app_color_on_secondary),
-                        fontWeight: FontWeight.bold),
-                  ),
-                  onSort: (columnIndex, ascending) {
-                    setState(() {
-                      sort = !sort;
-                    });
+                label: Text(
+                  'الاسم',
+                  style: GoogleFonts.cairo(
+                      fontStyle: FontStyle.normal,
+                      fontSize: 15,
+                      color: HexColor.fromHex(Constants.app_color_on_secondary),
+                      fontWeight: FontWeight.bold),
+                ),
+                /*  onSort: (columnIndex, ascending) {
+                      setState(() {
+                        sort = !sort;
+                      });
 
-                    onsortColum(columnIndex, ascending);
-                  }),
+                    //  onsortColum(columnIndex, ascending);
+                    }*/
+              ),
               if (!Responsive.isMobile(context))
                 DataColumn(
                   label: Text(
@@ -156,11 +136,11 @@ class _DoctorsDataTableState extends State<DoctorsDataTable> {
   }
 }
 
-DataRow dataRow(BuildContext context, DoctorsData doctorsdata) {
+DataRow dataRow(BuildContext context, Doctor doctor) {
   return DataRow(
     cells: [
       DataCell(Text(
-        doctorsdata.name!,
+        doctor.name!,
         style: GoogleFonts.cairo(
             fontStyle: FontStyle.normal,
             fontSize: 12,
@@ -169,7 +149,7 @@ DataRow dataRow(BuildContext context, DoctorsData doctorsdata) {
       )),
       if (!Responsive.isMobile(context))
         DataCell(Text(
-          doctorsdata.phone!,
+          doctor.phone!,
           style: GoogleFonts.cairo(
               fontStyle: FontStyle.normal,
               fontSize: 12,
@@ -177,7 +157,7 @@ DataRow dataRow(BuildContext context, DoctorsData doctorsdata) {
               fontWeight: FontWeight.normal),
         )),
       DataCell(Text(
-        doctorsdata.specialty!,
+        "doctorsdata.specialty!",
         style: GoogleFonts.cairo(
             fontStyle: FontStyle.normal,
             fontSize: 12,
@@ -185,22 +165,22 @@ DataRow dataRow(BuildContext context, DoctorsData doctorsdata) {
             fontWeight: FontWeight.normal),
       )),
       if (!Responsive.isMobile(context))
-        DataCell(Text(
-          doctorsdata.evaluate!,
+        /*DataCell(Text(
+          doctor.rating!,
           style: GoogleFonts.cairo(
               fontStyle: FontStyle.normal,
               fontSize: 12,
               color: HexColor.fromHex(Constants.app_color_on_secondary),
               fontWeight: FontWeight.normal),
-        )),
-      DataCell(
-        EditBottun(press: () {
-          showDialog(
-            context: context,
-            builder: (context) => CustomerEditDoctorDataView(),
-          );
-        }),
-      ),
+        )),*/
+        DataCell(
+          EditBottun(press: () {
+            showDialog(
+              context: context,
+              builder: (context) => CustomerEditDoctorDataView(),
+            );
+          }),
+        ),
       DataCell(
         DeleteBottun(press: () {
           showDeleteDialog(context, () {
