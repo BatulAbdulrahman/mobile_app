@@ -16,13 +16,19 @@ class CustomerDoctorsManagementViewModel extends BaseViewModel {
   }*/
   BuildContext? context;
   List<Doctor> doctors = [];
-
+  Doctor? doctor;
   Future<void> init(BuildContext context) async {
     this.context = context;
-    setBusy(true);
-    doctors = await locator<DoctorsRepository>().fetchDoctorsList();
-    print(doctors);
+    doctor = doctor;
+    //setBusy(true);
+    // notifyListeners();
+    print("nnnnn");
+    doctors =
+        await runBusyFuture(locator<DoctorsRepository>().fetchDoctorsList());
+    print("nnnnn");
+    print(doctors.first.name);
     setBusy(false);
+    notifyListeners();
   }
 
   void moveToLogin(BuildContext context) {}

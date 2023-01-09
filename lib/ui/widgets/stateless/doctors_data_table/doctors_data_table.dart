@@ -24,7 +24,7 @@ class DoctorsDataTable extends StatelessWidget {
       builder: (context, model, child) => Expanded(
         child: Directionality(
           textDirection: TextDirection.rtl,
-          child: PaginatedDataTable2(
+          child: PaginatedDataTable(
             sortColumnIndex: 0,
             source: RowSource(
               context: context,
@@ -59,7 +59,7 @@ class DoctorsDataTable extends StatelessWidget {
             ),
             rowsPerPage: 7,
             columnSpacing: 16.0 / 2,
-            minWidth: 325,
+            // minWidth: 325,
             columns: [
               DataColumn(
                 label: Text(
@@ -119,11 +119,11 @@ class DoctorsDataTable extends StatelessWidget {
   }
 }
 
-DataRow dataRow(BuildContext context, Doctor doctor) {
+DataRow dataRow(BuildContext context, DoctorsDataTableModel model) {
   return DataRow(
     cells: [
       DataCell(Text(
-        doctor.name!,
+        model.doctors.first.name!,
         style: GoogleFonts.cairo(
             fontStyle: FontStyle.normal,
             fontSize: 12,
@@ -132,7 +132,7 @@ DataRow dataRow(BuildContext context, Doctor doctor) {
       )),
       if (!Responsive.isMobile(context))
         DataCell(Text(
-          doctor.phone!,
+          model.doctors.first.phone!,
           style: GoogleFonts.cairo(
               fontStyle: FontStyle.normal,
               fontSize: 12,
