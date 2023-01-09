@@ -46,6 +46,7 @@ class HttpServiceImpl implements HttpService {
     } on DioError catch (e) {
       if (Constants.isHttpLogON) {
         _log.severe('HttpService: Failed to GET ${e.response}');
+        _log.severe('HttpService: Failed to GET ${e.message}');
       }
 
       network_utils.checkForNetworkExceptions(e.response!);

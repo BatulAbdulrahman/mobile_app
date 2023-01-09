@@ -14,20 +14,18 @@ import 'doctors_data_table_model.dart';
 
 class DoctorsDataTable extends StatelessWidget {
   final Doctor doctor;
-  final ValueChanged<Doctor> onChanged;
 
-  const DoctorsDataTable({required this.doctor, required this.onChanged});
+  const DoctorsDataTable({required this.doctor});
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DoctorsDataTableModel>.nonReactive(
       viewModelBuilder: () => DoctorsDataTableModel(),
-      onModelReady: (model) => model.init(model.doctor!),
+      onModelReady: (model) => model.init(context),
       builder: (context, model, child) => Expanded(
         child: Directionality(
           textDirection: TextDirection.rtl,
           child: PaginatedDataTable2(
             sortColumnIndex: 0,
-            // sortAscending: sort,
             source: RowSource(
               context: context,
               myData: demoDoctorsData,
@@ -150,7 +148,7 @@ DataRow dataRow(BuildContext context, Doctor doctor) {
             fontWeight: FontWeight.normal),
       )),
       if (!Responsive.isMobile(context))
-        /*DataCell(Text(
+        /* DataCell(Text(
           doctor.rating!,
           style: GoogleFonts.cairo(
               fontStyle: FontStyle.normal,

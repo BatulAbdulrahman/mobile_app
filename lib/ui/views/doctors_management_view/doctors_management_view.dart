@@ -38,11 +38,14 @@ class _CustomerDoctorsManagementViewState
                             );
                           }),
                       Expanded(
-                        child: DoctorsDataTable(
-                          doctor: model.doctors.first,
-                          onChanged: (value) {},
-                        ),
-                      ),
+                        child: model.doctors.isNotEmpty
+                            ? DoctorsDataTable(
+                                doctor: model.doctors.first,
+                              )
+                            : Container(
+                                child: Text('There is no doctors'),
+                              ),
+                      )
                     ],
                   ),
                 ),

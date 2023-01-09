@@ -11,10 +11,22 @@ class DoctorsDataTableModel extends BaseViewModel {
   /*Future<void> init() async {
     notifyListeners();
   }*/
-  Doctor? doctor;
+  /*Doctor? doctor;
 
   void init(Doctor doctor) {
     this.doctor = doctor;
+  }*/
+  BuildContext? context;
+  List<Doctor> doctors = [];
+  Doctor? doctor;
+
+  Future<void> init(BuildContext context) async {
+    this.context = context;
+    doctor = doctor;
+    setBusy(true);
+    doctors = await locator<DoctorsRepository>().fetchDoctorsList();
+    print(doctors);
+    setBusy(false);
   }
 
   /*Future<void> init() async {
