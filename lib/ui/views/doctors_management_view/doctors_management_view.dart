@@ -2,7 +2,6 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:mobile_app/logger.dart';
-import 'package:mobile_app/ui/views/doctors_management_view/paged_doctors_list_view.dart';
 import 'package:stacked/stacked.dart';
 import '../add_doctor/add_doctor.dart';
 import '../../widgets/stateless/doctors_data_table/doctors_data_table.dart';
@@ -39,8 +38,10 @@ class _CustomerDoctorsManagementViewState
                             );
                           }),
                       Expanded(
-                        child: PagedDoctorsListView({},
-                            onDoctorsClicked: (move) {}),
+                        child: DoctorsDataTable(
+                          doctor: model.doctors.first,
+                          onChanged: (value) {},
+                        ),
                       ),
                     ],
                   ),

@@ -12,19 +12,11 @@ import '../../../shared/responsive.dart';
 import 'data.dart';
 import 'doctors_data_table_model.dart';
 
-class DoctorsDataTable extends StatefulWidget {
-  //const DoctorsDataTable({Key? key, required Doctor doctor}) : super(key: key);
+class DoctorsDataTable extends StatelessWidget {
   final Doctor doctor;
   final ValueChanged<Doctor> onChanged;
 
   const DoctorsDataTable({required this.doctor, required this.onChanged});
-  @override
-  State<DoctorsDataTable> createState() => _DoctorsDataTableState();
-}
-
-class _DoctorsDataTableState extends State<DoctorsDataTable> {
-  bool sort = true;
-
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DoctorsDataTableModel>.nonReactive(
@@ -35,7 +27,7 @@ class _DoctorsDataTableState extends State<DoctorsDataTable> {
           textDirection: TextDirection.rtl,
           child: PaginatedDataTable2(
             sortColumnIndex: 0,
-            sortAscending: sort,
+            // sortAscending: sort,
             source: RowSource(
               context: context,
               myData: demoDoctorsData,
@@ -80,13 +72,6 @@ class _DoctorsDataTableState extends State<DoctorsDataTable> {
                       color: HexColor.fromHex(Constants.app_color_on_secondary),
                       fontWeight: FontWeight.bold),
                 ),
-                /*  onSort: (columnIndex, ascending) {
-                      setState(() {
-                        sort = !sort;
-                      });
-
-                    //  onsortColum(columnIndex, ascending);
-                    }*/
               ),
               if (!Responsive.isMobile(context))
                 DataColumn(
