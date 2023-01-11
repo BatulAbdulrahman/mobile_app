@@ -25,6 +25,7 @@ class CustomerDoctorsManagementView extends StatefulWidget {
 
 class _CustomerDoctorsManagementViewState
     extends State<CustomerDoctorsManagementView> {
+  final DataTableSource _data = doctorDataTableSource(doctor: []);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<CustomerDoctorsManagementViewModel>.nonReactive(
@@ -64,11 +65,8 @@ class _CustomerDoctorsManagementViewState
                           textDirection: TextDirection.rtl,
                           child: PaginatedDataTable2(
                             sortColumnIndex: 0,
-                            source: RowSource(
-                              context: context,
-                              myData: model.doctors,
-                              count: model.doctors.length,
-                            ),
+                            source: _data,
+                            //   doctorDataTableSource(doctor: model.doctors),
                             header: TextField(
                               textDirection: TextDirection.rtl,
                               decoration: InputDecoration(
@@ -167,36 +165,44 @@ class _CustomerDoctorsManagementViewState
   }
 }
 
-DataRow dataRow(BuildContext context, Doctor doctor) {
-  return DataRow(
-    cells: [
-      DataCell(Text(
-        doctor.name!,
-        style: GoogleFonts.cairo(
-            fontStyle: FontStyle.normal,
-            fontSize: 12,
-            color: HexColor.fromHex(Constants.app_color_on_secondary),
-            fontWeight: FontWeight.normal),
-      )),
-      if (!Responsive.isMobile(context))
+class doctorDataTableSource extends DataTableSource {
+  var context;
+  doctorDataTableSource({required List<Doctor> doctor}) : doctor = doctor;
+  //assert(doctor != null);
+  final List<Doctor> doctor;
+  @override
+  DataRow dataRow(BuildContext context, int index) {
+    final doctors = doctor[index];
+    return DataRow.byIndex(
+      index: index,
+      cells: <DataCell>[
         DataCell(Text(
-          doctor.phone!,
+          doctors.name!,
           style: GoogleFonts.cairo(
               fontStyle: FontStyle.normal,
               fontSize: 12,
               color: HexColor.fromHex(Constants.app_color_on_secondary),
               fontWeight: FontWeight.normal),
         )),
-      DataCell(Text(
-        "doctorsdata.specialty!",
-        style: GoogleFonts.cairo(
-            fontStyle: FontStyle.normal,
-            fontSize: 12,
-            color: HexColor.fromHex(Constants.app_color_on_secondary),
-            fontWeight: FontWeight.normal),
-      )),
-      if (!Responsive.isMobile(context))
-        /* DataCell(Text(
+        if (!Responsive.isMobile(context))
+          DataCell(Text(
+            doctors.phone!,
+            style: GoogleFonts.cairo(
+                fontStyle: FontStyle.normal,
+                fontSize: 12,
+                color: HexColor.fromHex(Constants.app_color_on_secondary),
+                fontWeight: FontWeight.normal),
+          )),
+        DataCell(Text(
+          "doctorsdata.specialty!",
+          style: GoogleFonts.cairo(
+              fontStyle: FontStyle.normal,
+              fontSize: 12,
+              color: HexColor.fromHex(Constants.app_color_on_secondary),
+              fontWeight: FontWeight.normal),
+        )),
+        if (!Responsive.isMobile(context))
+          /* DataCell(Text(
           doctor.rating!,
           style: GoogleFonts.cairo(
               fontStyle: FontStyle.normal,
@@ -204,50 +210,40 @@ DataRow dataRow(BuildContext context, Doctor doctor) {
               color: HexColor.fromHex(Constants.app_color_on_secondary),
               fontWeight: FontWeight.normal),
         )),*/
+          DataCell(
+            EditBottun(press: () {
+              showDialog(
+                context: context,
+                builder: (context) => CustomerEditDoctorDataView(),
+              );
+            }),
+          ),
         DataCell(
-          EditBottun(press: () {
-            showDialog(
-              context: context,
-              builder: (context) => CustomerEditDoctorDataView(),
-            );
+          DeleteBottun(press: () {
+            showDeleteDialog(context, () {
+              Navigator.of(context).pop();
+            });
           }),
-        ),
-      DataCell(
-        DeleteBottun(press: () {
-          showDeleteDialog(context, () {
-            Navigator.of(context).pop();
-          });
-        }),
-      )
-    ],
-  );
-}
-
-class RowSource extends DataTableSource {
-  var context;
-  var myData;
-  final count;
-  RowSource({
-    required this.myData,
-    required this.count,
-    required this.context,
-  });
-
-  @override
-  DataRow? getRow(int index) {
-    if (index < rowCount) {
-      return dataRow(context, myData![index]);
-    } else {
-      return null;
-    }
+        )
+      ],
+    );
   }
 
   @override
   bool get isRowCountApproximate => false;
 
   @override
-  int get rowCount => count;
+  int get rowCount => doctor.length;
 
   @override
   int get selectedRowCount => 0;
+
+  @override
+  DataRow? getRow(int index) {
+    if (index < rowCount) {
+      return dataRow(context, index);
+    } else {
+      return null;
+    }
+  }
 }

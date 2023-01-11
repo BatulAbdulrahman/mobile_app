@@ -28,8 +28,8 @@ class DoctorsDataTable extends StatelessWidget {
             sortColumnIndex: 0,
             source: RowSource(
               context: context,
-              myData: demoDoctorsData,
-              count: demoDoctorsData.length,
+              myData: model.doctors,
+              count: model.doctors.length,
             ),
             header: TextField(
               textDirection: TextDirection.rtl,
@@ -119,11 +119,11 @@ class DoctorsDataTable extends StatelessWidget {
   }
 }
 
-DataRow dataRow(BuildContext context, DoctorsDataTableModel model) {
+DataRow dataRow(BuildContext context, Doctor doctor) {
   return DataRow(
     cells: [
       DataCell(Text(
-        model.doctors.first.name!,
+        doctor.name!,
         style: GoogleFonts.cairo(
             fontStyle: FontStyle.normal,
             fontSize: 12,
@@ -132,7 +132,7 @@ DataRow dataRow(BuildContext context, DoctorsDataTableModel model) {
       )),
       if (!Responsive.isMobile(context))
         DataCell(Text(
-          model.doctors.first.phone!,
+          doctor.phone!,
           style: GoogleFonts.cairo(
               fontStyle: FontStyle.normal,
               fontSize: 12,
