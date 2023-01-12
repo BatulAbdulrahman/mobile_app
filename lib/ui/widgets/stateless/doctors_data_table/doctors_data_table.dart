@@ -12,10 +12,14 @@ import '../../../shared/responsive.dart';
 import 'data.dart';
 import 'doctors_data_table_model.dart';
 
-class DoctorsDataTable extends StatelessWidget {
-  final Doctor doctor;
+class DoctorsDataTable extends StatefulWidget {
+  //const DoctorsDataTable({Key? key, required Doctor doctor}) : super(key: key);
 
-  const DoctorsDataTable({required this.doctor});
+  @override
+  State<DoctorsDataTable> createState() => _DoctorsDataTableState();
+}
+
+class _DoctorsDataTableState extends State<DoctorsDataTable> {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DoctorsDataTableModel>.nonReactive(
@@ -24,7 +28,7 @@ class DoctorsDataTable extends StatelessWidget {
       builder: (context, model, child) => Expanded(
         child: Directionality(
           textDirection: TextDirection.rtl,
-          child: PaginatedDataTable(
+          child: PaginatedDataTable2(
             sortColumnIndex: 0,
             source: RowSource(
               context: context,
@@ -59,7 +63,7 @@ class DoctorsDataTable extends StatelessWidget {
             ),
             rowsPerPage: 7,
             columnSpacing: 16.0 / 2,
-            // minWidth: 325,
+            minWidth: 325,
             columns: [
               DataColumn(
                 label: Text(
@@ -148,7 +152,7 @@ DataRow dataRow(BuildContext context, Doctor doctor) {
             fontWeight: FontWeight.normal),
       )),
       if (!Responsive.isMobile(context))
-        /* DataCell(Text(
+        /*DataCell(Text(
           doctor.rating!,
           style: GoogleFonts.cairo(
               fontStyle: FontStyle.normal,

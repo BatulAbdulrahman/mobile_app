@@ -211,7 +211,6 @@ class HttpServiceImpl implements HttpService {
 
     debugPrint('Sending Post $route');
     log('Sending formData $body');
-
     var response = await _dio.post(route, data: formData);
 
     _log.shout(response.statusCode);

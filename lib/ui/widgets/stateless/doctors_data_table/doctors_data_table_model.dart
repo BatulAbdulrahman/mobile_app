@@ -27,6 +27,7 @@ class DoctorsDataTableModel extends BaseViewModel {
     doctors = await locator<DoctorsRepository>().fetchDoctorsList();
     print(doctors);
     setBusy(false);
+    notifyListeners();
   }
 
   /*Future<void> init() async {

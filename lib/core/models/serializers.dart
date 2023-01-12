@@ -1,9 +1,11 @@
 library serializers;
 
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/iso_8601_date_time_serializer.dart';
 import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart';
 import 'package:mobile_app/core/models/doctor/doctor.dart';
+import 'package:mobile_app/core/models/specialization/specialization.dart';
 
 import '/core/models/post/post.dart';
 
@@ -14,6 +16,7 @@ part 'serializers.g.dart';
 @SerializersFor([
   Post,
   Doctor,
+  Specialization,
 ])
 
 /// Can add additional plugins that will serialize types like [DateTime]
@@ -24,5 +27,7 @@ part 'serializers.g.dart';
 ///     Datetime that converts TimeStamp or DateTime to integers.
 Serializers serializers = (_$serializers.toBuilder()
       ..addPlugin(StandardJsonPlugin())
-      ..add(Iso8601DateTimeSerializer()))
+      ..add(Iso8601DateTimeSerializer())
+      ..addBuilderFactory(FullType(BuiltList, [FullType(Specialization)]),
+          () => ListBuilder<Specialization>()))
     .build();

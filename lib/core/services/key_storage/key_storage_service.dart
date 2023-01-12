@@ -1,5 +1,8 @@
 abstract class KeyStorageService {
-
+  KeyStorageService._internal() {
+    // TODO: implement KeyStorageService._internal
+    throw UnimplementedError();
+  }
   void remove(String key);
 
   void removeEveryThing();

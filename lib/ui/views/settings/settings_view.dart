@@ -22,11 +22,6 @@ class _SettingsViewState extends State<SettingsView> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SettingsViewModel>.reactive(
       viewModelBuilder: () => SettingsViewModel(),

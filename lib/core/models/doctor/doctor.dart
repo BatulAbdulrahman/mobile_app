@@ -27,6 +27,8 @@ abstract class Doctor implements Built<Doctor, DoctorBuilder> {
 
   String? get img;
 
+  //BuiltList<Specialization>? get specializations;
+
   //String? get thumb;
 
   bool? get is_disabled;

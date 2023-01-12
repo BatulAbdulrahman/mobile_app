@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:mobile_app/core/data_sources/specializations/specializations_remote_data_source.dart';
 import 'package:mobile_app/core/services/connectivity/connectivity_service.dart';
 import 'package:mobile_app/core/services/connectivity/connectivity_service_impl.dart';
 import 'package:mobile_app/core/services/http/http_service.dart';
@@ -13,6 +14,7 @@ import 'package:get_it/get_it.dart';
 
 import 'core/data_sources/doctors/doctors_remote_data_source.dart';
 import 'core/repositories/doctors_repository/doctors_repository.dart';
+import 'core/repositories/specializations_repository/specializations_repository.dart';
 
 GetIt locator = GetIt.instance;
 
@@ -39,12 +41,19 @@ Future<void> setupLocator() async {
   locator.registerLazySingleton<DoctorsRemoteDataSource>(
     () => DoctorsRemoteDataSourceImpl(),
   );
+  locator.registerLazySingleton<SpecializationsRemoteDataSource>(
+    () => SpecializationsRemoteDataSourceImpl(),
+  );
 
   locator
       .registerLazySingleton<DoctorsRepository>(() => DoctorsRepositoryImpl());
   await _setupSharedPreferences();
 
-  // Utils
+  locator.registerLazySingleton<SpecializationsRepository>(
+      () => SpecializationsRepositoryImpl());
+  await _setupSharedPreferences();
+
+  // Utils   Specialization
   locator.registerLazySingleton<FileHelper>(() => FileHelperImpl());
 }
 

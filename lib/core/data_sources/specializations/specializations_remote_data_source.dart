@@ -1,49 +1,54 @@
 import 'dart:async';
-import 'package:mobile_app/core/models/doctor/doctor.dart';
 
+import '../../models/specialization/specialization.dart';
 import '/core/constant/api_routes.dart';
 import '/core/services/http/http_service.dart';
 import '/locator.dart';
 
-abstract class DoctorsRemoteDataSource {
-  Future<Doctor> fetchDoctor([Map<String, dynamic>? parameters]);
-  Future<Doctor> addDoctor([Map<String, dynamic>? parameters]);
-  Future<List<Doctor>> fetchDoctorsList([Map<String, dynamic>? parameters]);
+abstract class SpecializationsRemoteDataSource {
+  Future<Specialization> fetchSpecialization(
+      [Map<String, dynamic>? parameters]);
+  //Future<Review> sendReview([Map<String, dynamic>? parameters]);
+  Future<List<Specialization>> fetchSpecializationsList(
+      [Map<String, dynamic>? parameters]);
 
   //Future<Genre> fetchGenre([Map<String, dynamic>? parameters]);
 
   //Future<List<Genre>> fetchGenresList([Map<String, dynamic>? parameters]);
 }
 
-class DoctorsRemoteDataSourceImpl implements DoctorsRemoteDataSource {
+class SpecializationsRemoteDataSourceImpl
+    implements SpecializationsRemoteDataSource {
   final HttpService? httpService = locator<HttpService>();
 
   @override
-  Future<Doctor> fetchDoctor([Map<String, dynamic>? parameters]) async {
+  Future<Specialization> fetchSpecialization(
+      [Map<String, dynamic>? parameters]) async {
     Map<String, dynamic> restData = await (httpService!
-        .getHttp(ApiRoutes.doctor(parameters!['id']), parameters));
+        .getHttp(ApiRoutes.specialization(parameters!['id']), parameters));
 
-    return Doctor.fromMap(restData);
+    return Specialization.fromMap(restData);
   }
 
-  @override
-  Future<Doctor> addDoctor([Map<String, dynamic>? parameters]) async {
+  /*@override
+  Future<Review> sendReview([Map<String, dynamic>? parameters]) async {
     Map<String, dynamic> restData = await (httpService!
-        .postHttp(ApiRoutes.doctor(parameters!['id']), parameters));
+        .postHttp(ApiRoutes.review(parameters!['id']), parameters));
 
-    return Doctor.fromMap(restData);
-  }
+    return Review.fromMap(restData);
+  }*/
 
   @override
-  Future<List<Doctor>> fetchDoctorsList(
+  Future<List<Specialization>> fetchSpecializationsList(
       [Map<String, dynamic>? parameters]) async {
     Map<String, dynamic> jsonData =
-        await httpService!.getHttp(ApiRoutes.doctors, parameters);
+        await httpService!.getHttp(ApiRoutes.specializations, parameters);
 
     var list = jsonData['data'] as List<dynamic>;
 
-    var items =
-        list.map<Doctor>((vendorMap) => Doctor.fromMap(vendorMap)).toList();
+    var items = list
+        .map<Specialization>((vendorMap) => Specialization.fromMap(vendorMap))
+        .toList();
 
     return items;
   }

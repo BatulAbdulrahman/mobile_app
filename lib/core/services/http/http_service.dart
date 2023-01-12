@@ -7,12 +7,11 @@ abstract class HttpService {
   /// - throws `NetworkException` if GET fails
   Future<dynamic> getHttp(String route, Map<String, dynamic>? parameters);
 
-
   Future<dynamic> postHttpFormFile(
-      String route,
-      Map<String, dynamic> body,
-      List<File> files,
-      );
+    String route,
+    Map<String, dynamic> body,
+    List<File> files,
+  );
 
   /// Send POST request with [body] to endpoint/[route] and return the `response`
   /// - if successful: returns decoded json data

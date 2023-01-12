@@ -16,11 +16,10 @@ class CustomerDoctorsManagementViewModel extends BaseViewModel {
   }*/
   BuildContext? context;
   List<Doctor> doctors = [];
-  Doctor? doctor;
+
   Future<void> init(BuildContext context) async {
     this.context = context;
-    doctor = doctor;
-    //setBusy(true);
+    setBusy(true);
     // notifyListeners();
     print("nnnnn");
     doctors =
