@@ -88,6 +88,21 @@ class _$DoctorSerializer implements StructuredSerializer<Doctor> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.specializations;
+    if (value != null) {
+      result
+        ..add('specializations')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                BuiltList, const [const FullType(Specialization)])));
+    }
+    value = object.thumb;
+    if (value != null) {
+      result
+        ..add('thumb')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.is_disabled;
     if (value != null) {
       result
@@ -163,6 +178,16 @@ class _$DoctorSerializer implements StructuredSerializer<Doctor> {
           result.img = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'specializations':
+          result.specializations.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(Specialization)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'thumb':
+          result.thumb = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'is_disabled':
           result.is_disabled = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool?;
@@ -204,6 +229,10 @@ class _$Doctor extends Doctor {
   @override
   final String? img;
   @override
+  final BuiltList<Specialization>? specializations;
+  @override
+  final String? thumb;
+  @override
   final bool? is_disabled;
   @override
   final DateTime? created_at;
@@ -224,6 +253,8 @@ class _$Doctor extends Doctor {
       this.rating,
       this.role,
       this.img,
+      this.specializations,
+      this.thumb,
       this.is_disabled,
       this.created_at,
       this.updated_at})
@@ -250,6 +281,8 @@ class _$Doctor extends Doctor {
         rating == other.rating &&
         role == other.role &&
         img == other.img &&
+        specializations == other.specializations &&
+        thumb == other.thumb &&
         is_disabled == other.is_disabled &&
         created_at == other.created_at &&
         updated_at == other.updated_at;
@@ -268,16 +301,20 @@ class _$Doctor extends Doctor {
                                     $jc(
                                         $jc(
                                             $jc(
-                                                $jc($jc(0, id.hashCode),
-                                                    name.hashCode),
-                                                phone.hashCode),
-                                            email.hashCode),
-                                        password.hashCode),
-                                    sex.hashCode),
-                                description.hashCode),
-                            rating.hashCode),
-                        role.hashCode),
-                    img.hashCode),
+                                                $jc(
+                                                    $jc(
+                                                        $jc($jc(0, id.hashCode),
+                                                            name.hashCode),
+                                                        phone.hashCode),
+                                                    email.hashCode),
+                                                password.hashCode),
+                                            sex.hashCode),
+                                        description.hashCode),
+                                    rating.hashCode),
+                                role.hashCode),
+                            img.hashCode),
+                        specializations.hashCode),
+                    thumb.hashCode),
                 is_disabled.hashCode),
             created_at.hashCode),
         updated_at.hashCode));
@@ -296,6 +333,8 @@ class _$Doctor extends Doctor {
           ..add('rating', rating)
           ..add('role', role)
           ..add('img', img)
+          ..add('specializations', specializations)
+          ..add('thumb', thumb)
           ..add('is_disabled', is_disabled)
           ..add('created_at', created_at)
           ..add('updated_at', updated_at))
@@ -346,6 +385,16 @@ class DoctorBuilder implements Builder<Doctor, DoctorBuilder> {
   String? get img => _$this._img;
   set img(String? img) => _$this._img = img;
 
+  ListBuilder<Specialization>? _specializations;
+  ListBuilder<Specialization> get specializations =>
+      _$this._specializations ??= new ListBuilder<Specialization>();
+  set specializations(ListBuilder<Specialization>? specializations) =>
+      _$this._specializations = specializations;
+
+  String? _thumb;
+  String? get thumb => _$this._thumb;
+  set thumb(String? thumb) => _$this._thumb = thumb;
+
   bool? _is_disabled;
   bool? get is_disabled => _$this._is_disabled;
   set is_disabled(bool? is_disabled) => _$this._is_disabled = is_disabled;
@@ -373,6 +422,8 @@ class DoctorBuilder implements Builder<Doctor, DoctorBuilder> {
       _rating = $v.rating;
       _role = $v.role;
       _img = $v.img;
+      _specializations = $v.specializations?.toBuilder();
+      _thumb = $v.thumb;
       _is_disabled = $v.is_disabled;
       _created_at = $v.created_at;
       _updated_at = $v.updated_at;
@@ -396,21 +447,36 @@ class DoctorBuilder implements Builder<Doctor, DoctorBuilder> {
   Doctor build() => _build();
 
   _$Doctor _build() {
-    final _$result = _$v ??
-        new _$Doctor._(
-            id: id,
-            name: name,
-            phone: phone,
-            email: email,
-            password: password,
-            sex: sex,
-            description: description,
-            rating: rating,
-            role: role,
-            img: img,
-            is_disabled: is_disabled,
-            created_at: created_at,
-            updated_at: updated_at);
+    _$Doctor _$result;
+    try {
+      _$result = _$v ??
+          new _$Doctor._(
+              id: id,
+              name: name,
+              phone: phone,
+              email: email,
+              password: password,
+              sex: sex,
+              description: description,
+              rating: rating,
+              role: role,
+              img: img,
+              specializations: _specializations?.build(),
+              thumb: thumb,
+              is_disabled: is_disabled,
+              created_at: created_at,
+              updated_at: updated_at);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'specializations';
+        _specializations?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Doctor', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

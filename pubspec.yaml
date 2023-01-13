@@ -80,3 +80,7 @@ flutter_intl:
   enabled: true # Required. Must be set to true to activate the plugin. Default: false
   main_locale: ar
   class_name: AppLocalizations # Optional. Sets the name for the generated localization class. Default: S
+excel:
+    git:
+      url: https://github.com/justkawal/excel.git
+      ref: null-safety

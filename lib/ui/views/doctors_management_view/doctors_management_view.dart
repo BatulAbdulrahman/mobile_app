@@ -61,7 +61,8 @@ class _CustomerDoctorsManagementViewState
                             buttonPress: () {
                               showDialog(
                                 context: context,
-                                builder: (context) => CustomerAddDoctorView(),
+                                builder: (context) => CustomerAddDoctorView(
+                                    doctor: model.doctor!),
                               );
                             }),
 
@@ -193,7 +194,9 @@ class _CustomerDoctorsManagementViewState
                                                             FontWeight.normal),
                                                   )),
                                                 DataCell(Text(
-                                                  " doctor.specializations!.first.name!",
+                                                  /* doctor.specializations!.first
+                                                          .name ??*/
+                                                  "null",
                                                   style: GoogleFonts.cairo(
                                                       fontStyle:
                                                           FontStyle.normal,

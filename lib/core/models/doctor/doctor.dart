@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import '../specialization/specialization.dart';
 import '/core/models/serializers.dart';
 import 'package:built_collection/built_collection.dart';
 part 'doctor.g.dart';
@@ -27,9 +28,9 @@ abstract class Doctor implements Built<Doctor, DoctorBuilder> {
 
   String? get img;
 
-  //BuiltList<Specialization>? get specializations;
+  BuiltList<Specialization>? get specializations;
 
-  //String? get thumb;
+  String? get thumb;
 
   bool? get is_disabled;
 

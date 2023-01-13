@@ -45,12 +45,12 @@ Future<void> setupLocator() async {
     () => SpecializationsRemoteDataSourceImpl(),
   );
 
-  locator
-      .registerLazySingleton<DoctorsRepository>(() => DoctorsRepositoryImpl());
-  await _setupSharedPreferences();
+  locator.registerLazySingleton<DoctorsRepository>(() => DoctorsRepositoryImpl());
+  
 
-  locator.registerLazySingleton<SpecializationsRepository>(
-      () => SpecializationsRepositoryImpl());
+  locator.registerLazySingleton<SpecializationsRepository>(() => SpecializationsRepositoryImpl());
+
+  
   await _setupSharedPreferences();
 
   // Utils   Specialization

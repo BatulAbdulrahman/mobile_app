@@ -10,10 +10,12 @@ import 'package:stacked/stacked.dart';
 
 import '../../../core/constant/app_colors.dart';
 import '../../../core/constant/constants.dart';
+import '../../../core/models/doctor/doctor.dart';
 import '../../shared/dropdown_widget.dart';
 import '../../shared/textfield_widget.dart';
 import '../../widgets/stateless/gender_widget/gender_widget.dart';
 import '../../widgets/stateless/work_dates_widget/work_dates_widget.dart';
+import '../doctors_management_view/doctors_management_view.dart';
 import 'add_doctor_model.dart';
 
 // bool saturdayAmChecked = false;
@@ -32,18 +34,52 @@ import 'add_doctor_model.dart';
 // bool FridayPmChecked = false;
 
 class CustomerAddDoctorView extends StatefulWidget {
-  const CustomerAddDoctorView({Key? key}) : super(key: key);
+  Doctor doctor;
+  CustomerAddDoctorView({required this.doctor});
+  //const CustomerAddDoctorView({Key? key}) : super(key: key);
 
   @override
   State<CustomerAddDoctorView> createState() => _CustomerAddDoctorViewState();
 }
 
 class _CustomerAddDoctorViewState extends State<CustomerAddDoctorView> {
+  TextEditingController? nameController;
+  TextEditingController? emailController;
+  TextEditingController? phoneController;
+  TextEditingController? passwordController;
+  TextEditingController? descriptionController;
+  FocusNode? commentFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+
+    nameController = TextEditingController();
+    emailController = TextEditingController();
+    phoneController = TextEditingController();
+    passwordController = TextEditingController();
+    descriptionController = TextEditingController();
+    commentFocusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    nameController!.dispose();
+    emailController!.dispose();
+    phoneController!.dispose();
+    passwordController!.dispose();
+    descriptionController!.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<CustomerAddDoctorViewModel>.nonReactive(
       viewModelBuilder: () => CustomerAddDoctorViewModel(),
-      onModelReady: (model) => model.init(),
+      onModelReady: (model) async {
+        await model.init(context, widget.doctor);
+      },
       builder: (context, model, child) => Container(
         margin: EdgeInsets.all(16.0),
         padding: EdgeInsets.all(16.0),
@@ -161,10 +197,13 @@ class _CustomerAddDoctorViewState extends State<CustomerAddDoctorView> {
                 textDirection: TextDirection.rtl,
                 children: [
                   Expanded(
-                    child: TextFieldWidget(
-                      label: 'اسم الطبيب',
-                      onChanged: (name) {},
-                      hintText: 'اسم الطبيب',
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'اسم الطبيب',
+                        // onChanged: (name) {},
+                        hintText: 'اسم الطبيب',
+                      ),
+                      controller: nameController,
                       keyboardType: TextInputType.name,
                     ),
                   ),
@@ -179,10 +218,13 @@ class _CustomerAddDoctorViewState extends State<CustomerAddDoctorView> {
                             child: genderWidget(),
                           ),
                           Expanded(
-                            child: TextFieldWidget(
-                              label: 'العمر',
-                              onChanged: (name) {},
-                              hintText: 'العمر',
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                labelText: 'العمر',
+                                //onChanged: (name) {},
+                                hintText: 'العمر',
+                              ),
+                              controller: null,
                               keyboardType: TextInputType.number,
                             ),
                           ),
@@ -201,30 +243,18 @@ class _CustomerAddDoctorViewState extends State<CustomerAddDoctorView> {
                     ),
                   ],
                 ),
-              if (Responsive.isMobile(context)) const SizedBox(height: 16.0),
-              if (Responsive.isMobile(context))
-                Row(
-                  textDirection: TextDirection.rtl,
-                  children: [
-                    Expanded(
-                      child: TextFieldWidget(
-                        label: 'العمر',
-                        onChanged: (name) {},
-                        hintText: 'العمر',
-                        keyboardType: TextInputType.number,
-                      ),
-                    ),
-                  ],
-                ),
               const SizedBox(height: 16.0),
               Row(
                 textDirection: TextDirection.rtl,
                 children: [
                   Expanded(
-                    child: TextFieldWidget(
-                      label: 'رقم الهاتف',
-                      onChanged: (name) {},
-                      hintText: 'رقم الهاتف',
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'رقم الهاتف',
+                        // onChanged: (name) {},
+                        hintText: 'رقم الهاتف',
+                      ),
+                      controller: phoneController,
                       keyboardType: TextInputType.phone,
                     ),
                   ),
@@ -299,10 +329,13 @@ class _CustomerAddDoctorViewState extends State<CustomerAddDoctorView> {
                   Expanded(
                     child: Column(
                       children: [
-                        TextFieldWidget(
-                          label: 'البريد الإلكتروني',
-                          onChanged: (name) {},
-                          hintText: 'البريد الإلكتروني',
+                        TextFormField(
+                          decoration: InputDecoration(
+                            labelText: 'البريد الإلكتروني',
+                            //onChanged: (name) {},
+                            hintText: 'البريد الإلكتروني',
+                          ),
+                          controller: emailController,
                           keyboardType: TextInputType.emailAddress,
                         ),
                         const SizedBox(height: 16.0),
@@ -310,10 +343,13 @@ class _CustomerAddDoctorViewState extends State<CustomerAddDoctorView> {
                           textDirection: TextDirection.rtl,
                           children: [
                             Expanded(
-                              child: TextFieldWidget(
-                                label: 'كلمة المرور',
-                                onChanged: (name) {},
-                                hintText: 'كلمة المرور',
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                  labelText: 'كلمة المرور',
+                                  //onChanged: (name) {},
+                                  hintText: 'كلمة المرور',
+                                ),
+                                controller: passwordController,
                                 keyboardType: TextInputType.visiblePassword,
                                 obscureText: true,
                               ),
@@ -327,34 +363,19 @@ class _CustomerAddDoctorViewState extends State<CustomerAddDoctorView> {
                     const SizedBox(width: 16.0),
                   if (!Responsive.isMobile(context))
                     Expanded(
-                      child: TextFieldWidget(
-                        label: 'السيرة الذاتية',
-                        onChanged: (name) {},
-                        hintText: 'السيرة الذاتية',
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'السيرة الذاتية',
+                          //    onChanged: (name) {},
+                          hintText: 'السيرة الذاتية',
+                        ),
                         maxLines: 6,
-                        height: 150,
+                        cursorHeight: 100,
                         keyboardType: TextInputType.multiline,
                       ),
                     ),
                 ],
               ),
-              if (Responsive.isMobile(context)) const SizedBox(height: 16.0),
-              if (Responsive.isMobile(context))
-                Row(
-                  textDirection: TextDirection.rtl,
-                  children: [
-                    Expanded(
-                      child: TextFieldWidget(
-                        label: 'السيرة الذاتية',
-                        onChanged: (name) {},
-                        hintText: 'السيرة الذاتية',
-                        maxLines: 6,
-                        height: 150,
-                        keyboardType: TextInputType.multiline,
-                      ),
-                    ),
-                  ],
-                ),
               const SizedBox(height: 16.0 * 2),
               Container(
                 margin: EdgeInsets.only(
@@ -415,7 +436,31 @@ class _CustomerAddDoctorViewState extends State<CustomerAddDoctorView> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 textDirection: TextDirection.rtl,
-                children: [PrimaryButton(buttonText: 'إضافة', press: () {})],
+                children: [
+                  PrimaryButton(
+                      buttonText: 'إضافة',
+                      press: () {
+                        {
+                          if (nameController!.text.isNotEmpty) {
+                            model.addDoctor(
+                              nameController!.text,
+                              phoneController!.text,
+                              emailController!.text,
+                              passwordController!.text,
+                              descriptionController!.text,
+                            );
+                            //model.getUser();
+                            print(nameController!.text);
+                          }
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    CustomerDoctorsManagementView()),
+                          );
+                        }
+                      })
+                ],
               ),
             ],
           ),
