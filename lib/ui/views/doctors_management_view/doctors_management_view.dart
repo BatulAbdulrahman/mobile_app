@@ -6,6 +6,7 @@ import 'package:mobile_app/logger.dart';
 import 'package:stacked/stacked.dart';
 import '../../../core/constant/app_colors.dart';
 import '../../../core/constant/constants.dart';
+import '../../../core/models/doctor/doctor.dart';
 import '../../shared/delete_bottun.dart';
 import '../../shared/edit_bottun.dart';
 import '../../shared/responsive.dart';
@@ -194,9 +195,9 @@ class _CustomerDoctorsManagementViewState
                                                             FontWeight.normal),
                                                   )),
                                                 DataCell(Text(
-                                                  /* doctor.specializations!.first
-                                                          .name ??*/
-                                                  "null",
+                                                  doctor.specializations!.first
+                                                          .name ??
+                                                      "null",
                                                   style: GoogleFonts.cairo(
                                                       fontStyle:
                                                           FontStyle.normal,

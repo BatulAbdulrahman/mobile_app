@@ -25,8 +25,7 @@ class _$SpecializationSerializer
     if (value != null) {
       result
         ..add('id')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
     value = object.name;
     if (value != null) {
@@ -66,7 +65,7 @@ class _$SpecializationSerializer
       switch (key) {
         case 'id':
           result.id = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'name':
           result.name = serializers.deserialize(value,
@@ -89,7 +88,7 @@ class _$SpecializationSerializer
 
 class _$Specialization extends Specialization {
   @override
-  final String? id;
+  final int? id;
   @override
   final String? name;
   @override
@@ -143,9 +142,9 @@ class SpecializationBuilder
     implements Builder<Specialization, SpecializationBuilder> {
   _$Specialization? _$v;
 
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
 
   String? _name;
   String? get name => _$this._name;

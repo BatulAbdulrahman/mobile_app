@@ -8,7 +8,7 @@ part 'specialization.g.dart';
 
 abstract class Specialization
     implements Built<Specialization, SpecializationBuilder> {
-  String? get id; // uuid
+  int? get id; // uuid
 
   String? get name;
 

@@ -21,6 +21,9 @@ class CustomerDoctorsManagementViewModel extends BaseViewModel {
   List<Doctor> doctors = [];
   List<Specialization> specializations = [];
   Doctor? doctor;
+  String? q = '';
+  Specialization? selected_spec;
+  Doctor? selected_doctor;
   Future<void> init(BuildContext context) async {
     this.context = context;
     setBusy(true);
@@ -30,6 +33,19 @@ class CustomerDoctorsManagementViewModel extends BaseViewModel {
         await runBusyFuture(locator<DoctorsRepository>().fetchDoctorsList());
     specializations = await runBusyFuture(
         locator<SpecializationsRepository>().fetchSpecializationsList());
+    /*doctors = await locator<DoctorsRepository>()
+        .fetchDoctorsList({'paginate': '100'});
+
+    specializations =
+        await locator<SpecializationsRepository>().fetchSpecializationsList();*/
+
+    if (specializations.isNotEmpty) {
+      selected_spec = specializations.first;
+    }
+    if (doctors.isNotEmpty) {
+      selected_doctor = doctors.first;
+    }
+
     print("nnnnn");
     print(doctors.first.name);
     print(doctors.first.specializations!.first.name!);
