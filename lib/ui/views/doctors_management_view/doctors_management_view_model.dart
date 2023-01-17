@@ -48,7 +48,7 @@ class CustomerDoctorsManagementViewModel extends BaseViewModel {
 
     print("nnnnn");
     print(doctors.first.name);
-    print(doctors.first.specializations!.first.name!);
+    print(doctors.first.Specializations!.first.name!);
     setBusy(false);
     notifyListeners();
   }

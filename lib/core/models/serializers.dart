@@ -6,7 +6,7 @@ import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart';
 import 'package:mobile_app/core/models/doctor/doctor.dart';
 import 'package:mobile_app/core/models/specialization/specialization.dart';
-
+import 'package:mobile_app/core/models/clinic/clinic.dart';
 import '/core/models/post/post.dart';
 
 part 'serializers.g.dart';
@@ -17,6 +17,7 @@ part 'serializers.g.dart';
   Post,
   Doctor,
   Specialization,
+  Clinic,
 ])
 
 /// Can add additional plugins that will serialize types like [DateTime]

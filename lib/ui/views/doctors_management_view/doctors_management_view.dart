@@ -195,7 +195,7 @@ class _CustomerDoctorsManagementViewState
                                                             FontWeight.normal),
                                                   )),
                                                 DataCell(Text(
-                                                  doctor.specializations!.first
+                                                  doctor.Specializations!.first
                                                           .name ??
                                                       "null",
                                                   style: GoogleFonts.cairo(

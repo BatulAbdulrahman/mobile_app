@@ -12,7 +12,9 @@ import 'package:mobile_app/core/services/navigation/navigation_service_impl.dart
 import 'package:mobile_app/core/utils/file_helper.dart';
 import 'package:get_it/get_it.dart';
 
+import 'core/data_sources/clinics/clinics_remote_data_source.dart';
 import 'core/data_sources/doctors/doctors_remote_data_source.dart';
+import 'core/repositories/clinics_repository/clinics_repository.dart';
 import 'core/repositories/doctors_repository/doctors_repository.dart';
 import 'core/repositories/specializations_repository/specializations_repository.dart';
 
@@ -44,13 +46,19 @@ Future<void> setupLocator() async {
   locator.registerLazySingleton<SpecializationsRemoteDataSource>(
     () => SpecializationsRemoteDataSourceImpl(),
   );
+  locator.registerLazySingleton<ClinicsRemoteDataSource>(
+    () => ClinicsRemoteDataSourceImpl(),
+  );
 
-  locator.registerLazySingleton<DoctorsRepository>(() => DoctorsRepositoryImpl());
-  
+  locator
+      .registerLazySingleton<DoctorsRepository>(() => DoctorsRepositoryImpl());
 
-  locator.registerLazySingleton<SpecializationsRepository>(() => SpecializationsRepositoryImpl());
+  locator.registerLazySingleton<SpecializationsRepository>(
+      () => SpecializationsRepositoryImpl());
 
-  
+  locator
+      .registerLazySingleton<ClinicsRepository>(() => ClinicsRepositoryImpl());
+
   await _setupSharedPreferences();
 
   // Utils   Specialization
