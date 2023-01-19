@@ -3,7 +3,7 @@ class ApiRoutes {
   ApiRoutes._();
 
   static String base_url = 'http://44.212.230.27:8000/';
-  static String v1 = 'api/v1';
+  static String v1 = 'api/v1/admin';
   static String base = base_url + v1;
 
   static String doctors = '$base/doctors';

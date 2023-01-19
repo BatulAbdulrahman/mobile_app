@@ -26,8 +26,15 @@ class StartUpView extends StatelessWidget {
               children: [
                 Container(),
                 Container(
+                  child: Image.asset(
+                    AssetImages.logo_png,
+                    height: 250,
+                    width: 250,
+                  ),
+                ),
+                Container(
                   child: Text(
-                    'شِفاء',
+                    'طبيبي',
                     textDirection: TextDirection.rtl,
                     style: GoogleFonts.cairo(
                         fontStyle: FontStyle.normal,

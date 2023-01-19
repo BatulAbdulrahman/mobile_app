@@ -1,7 +1,7 @@
 class AssetImages {
   // Logos
 
-  static String logo_png = 'assets/images/photo.png';
+  static String logo_png = 'assets/images/طبيبي-removebg-preview.png';
 
   //Social_icons
   static const empty_view = 'assets/images/empty_box.svg';
@@ -13,7 +13,6 @@ class AssetImages {
   static const twitter_icon = 'assets/images/social_icons/twitter_icon.svg';
   static const google_maps_icon = 'assets/images/social_icons/google_maps_icon';
   static const whatss_app_icon = 'assets/images/social_icons/whatss_app.svg';
-
 
   static String photo = 'assets/images/photo.png';
 
