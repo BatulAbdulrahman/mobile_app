@@ -11,6 +11,7 @@ import '../../../core/constant/constants.dart';
 import '../../shared/drawer_menu_controler.dart';
 import '../../widgets/stateless/app_logo.dart';
 import '../../widgets/stateless/drawer/customer_drawer_menu.dart';
+import '../account_management_view/admin_account_management_view.dart';
 import '../clinics_management_view/clinics_management_view.dart';
 import '../doctors_management_view/doctors_management_view.dart';
 import '../home_view/home_view.dart';
@@ -31,7 +32,7 @@ class CustomerMainView extends StatefulWidget {
 class _CustomerMainViewState extends State<CustomerMainView> {
   final _views = [
     FadeIn(child: CustomerHomeView()),
-    FadeIn(child: CustomerDoctorAccountManagementView()),
+    FadeIn(child: CustomerAdminAccountManagementView()),
     FadeIn(child: CustomerDoctorsManagementView()),
     FadeIn(child: CustomerClinicsManagementView()),
     FadeIn(child: CustomerSpecialtiesManagementView()),

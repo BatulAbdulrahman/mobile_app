@@ -34,11 +34,11 @@ class StartUpView extends StatelessWidget {
                 ),
                 Container(
                   child: Text(
-                    'طبيبي',
+                    'طـبيـبي',
                     textDirection: TextDirection.rtl,
                     style: GoogleFonts.cairo(
                         fontStyle: FontStyle.normal,
-                        fontSize: 25,
+                        fontSize: 30,
                         color: HexColor.fromHex(Constants.app_color_on_primary),
                         fontWeight: FontWeight.bold),
                   ),
