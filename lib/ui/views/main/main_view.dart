@@ -9,6 +9,7 @@ import 'package:mobile_app/generated/l10n.dart';
 import '../../../core/constant/app_colors.dart';
 import '../../../core/constant/constants.dart';
 import '../../shared/drawer_menu_controler.dart';
+import '../../widgets/stateless/app_logo.dart';
 import '../../widgets/stateless/drawer/customer_drawer_menu.dart';
 import '../clinics_management_view/clinics_management_view.dart';
 import '../doctors_management_view/doctors_management_view.dart';
@@ -101,22 +102,6 @@ class _CustomerMainViewState extends State<CustomerMainView> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 16.0),
-                child: Text(
-                  'شِفاء',
-                  textDirection: TextDirection.rtl,
-                  style: GoogleFonts.cairo(
-                      fontStyle: FontStyle.normal,
-                      fontSize: 25,
-                      color: HexColor.fromHex(Constants.app_color_on_primary),
-                      fontWeight: FontWeight.bold),
-                ),
-                // AppLogo(
-                //   height: 250,
-                //   width: 250,
-                // ),
-              ),
               DrawerHeader(
                 child: CircleAvatar(
                   radius: 52,
@@ -264,6 +249,10 @@ class _CustomerMainViewState extends State<CustomerMainView> {
                   Icons.logout_outlined,
                   color: HexColor.fromHex(Constants.app_color_on_primary),
                 ),
+              ),
+              AppLogo(
+                height: 150,
+                width: 150,
               ),
             ],
           ),

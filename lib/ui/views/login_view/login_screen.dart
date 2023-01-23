@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobile_app/ui/views/main/main_view.dart';
+import 'package:mobile_app/ui/widgets/stateless/app_logo.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../core/constant/app_colors.dart';
@@ -41,14 +43,9 @@ class _CustomerLoginViewState extends State<CustomerLoginView> {
                         height: height,
                         color: HexColor.fromHex(Constants.app_color_primary),
                         child: Center(
-                            child: Text(
-                          'شِفاء',
-                          style: GoogleFonts.cairo(
-                              fontStyle: FontStyle.normal,
-                              fontSize: 48,
-                              color: HexColor.fromHex(
-                                  Constants.app_color_on_primary),
-                              fontWeight: FontWeight.bold),
+                            child: AppLogo(
+                          height: 250,
+                          width: 250,
                         )),
                       ),
                     ),
@@ -68,19 +65,11 @@ class _CustomerLoginViewState extends State<CustomerLoginView> {
                         SizedBox(height: height * 0.064),
                         if (Responsive.isMobile(context))
                           Center(
-                              child: Text(
-                            'شِفاء',
-                            style: GoogleFonts.cairo(
-                                fontStyle: FontStyle.normal,
-                                fontSize: 48,
-                                color: HexColor.fromHex(
-                                    Constants.app_color_secondary),
-                                fontWeight: FontWeight.bold),
-                          )),
-                        // AppLogo(
-                        //   height: 250,
-                        //   width: 250,
-                        // ),
+                            child: AppLogo(
+                              height: 200,
+                              width: 200,
+                            ),
+                          ),
                         SizedBox(height: height * 0.064),
                         RichText(
                           text: TextSpan(
@@ -242,7 +231,12 @@ class _CustomerLoginViewState extends State<CustomerLoginView> {
                         ),
                         SizedBox(height: height * 0.05),
                         SigninButton(
-                          press: () {},
+                          press: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CustomerMainView()));
+                          },
                           title: 'تسجيل الدخول',
                         )
                       ],
